@@ -27,6 +27,7 @@ $found = mysqli_feetch_array($result);
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>Employee Directory Details</title>
 </head>
+<div class="container">
 <h1>Deleting an Employee</h1>
 <form action="delete2.php" method="POST">
 <?php
@@ -44,6 +45,6 @@ echo '</p>';
 
 // 4:30
 
-   
+   </div>
 </body>
 </html>

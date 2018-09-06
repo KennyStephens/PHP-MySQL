@@ -1,13 +1,13 @@
 <?php
-$first = $_POST[first];
-$last = $_POST[last];
-$department = $_POST[dept];
-$phone = $_POST[phone];
-$photo = $_POST[photo];
+$first = $_POST['first'];
+$last = $_POST['last'];
+$department = $_POST['dept'];
+$phone = $_POST['phone'];
+$photo = $_POST['photo'];
 
 // Make photo path and name
 $ext = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
-$filename = .$first . $last . time() . '.'. $ext;
+$filename = $first. $last.time().'.'.$ext.'';
 $filepath ='/dgm3760/manage-records/';
 
 // Verify the image is valid ---------------------------------------------
@@ -20,12 +20,12 @@ if($_FILES['photo']['size'] == 0) {
 
 // Check if image is too large
 if($_FILES['photo']['size'] > 204800) {
-  echo 'OOPS, that image size was larger than 200KB.'
+  echo 'OOPS, that image size was larger than 200KB.';
   $validImage = false;
 }
 
 // Check file type
-if($_FILES['photo']['type'] =='image/gif') || $_FILES['photo']['type'] =='image/jpeg' || $_FILES['photo']['type'] =='image/pjpeg' || $_FILES['photo']['type'] =='image/png') {
+if($_FILES['photo']['type'] =='image/gif' || $_FILES['photo']['type'] =='image/jpeg' || $_FILES['photo']['type'] =='image/pjpeg' || $_FILES['photo']['type'] =='image/png') {
   // That must be a proper format
 
 } else {
@@ -74,6 +74,7 @@ if($validImage == true) {
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>Thanks Page</title>
 </head>
+<div class="container">
 <h1>Employee Successfully Added</h1>
 
 <?php
@@ -83,6 +84,6 @@ echo "$phone <br>";
 echo '<img src="'.$filepath.$filename.'"/>';
 
 ?>
-  
+  </div>
 </body>
 </html>

@@ -24,6 +24,7 @@ $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>Remove Employees</title>
 </head>
+<div class="container">
 <h1>Delete Employees</h1>
 
 <?php
@@ -37,6 +38,6 @@ while($row = mysqli_fetch_array($results)) {
 };
 
 ?>
-  
+  </div>
 </body>
 </html>
