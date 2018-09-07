@@ -1,3 +1,28 @@
+<?php
+$employee_id = $_GET[id];
+
+// Build connection
+$dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
+
+// Build query
+$query = "SELECT * FROM employee_simple WHERE id=$employee_id";
+
+// Talk to database
+$result = mysqli_query($dbconnection, $query) or die ('Query Failed');
+
+// Put results in variable
+$found = mysqli_fetch_array($result);
+
+// // Verify photo exists
+// if(file_exists('employees/'.$found['photo']) && $found['photo'] <> '') {
+//   //echo 'image found';
+//   $photoPath = 'employees/'.$found['photo'];
+// } else {
+//   // echo 'image missing'
+//   $photoPath = 'employees/missing.jpg';
+// }
+// ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -9,50 +34,37 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Manage Records</title>
+    <title>Update Employee</title>
   </head>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.php">Directory</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add.html">Add</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="delete.php">Delete</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <?php
+include_once('navbar.php');
+?>
   <body>
     <div class="container">
     
-      <h1 class="mt-3">Add Employees</h1>
+      <h4 class="mt-3">Update Employee</h4>
 
-      <form action="saveToDatabasePractice.php" method="POST" enctype="multipart/form-data">
+      <form action="updateDatabase.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label>First Name:</label>
-          <input type="text" class="form-control" placeholder="First Name" name="first" value="Kenny">
+          <input type="text" class="form-control" placeholder="First Name" name="first" value="<?php echo $found['first']; ?>">
         </div>
 
         <div class="form-group">
           <label>Last Name:</label>
-          <input type="text" class="form-control" placeholder="Last Name" name="last" value="Stephens">
+          <input type="text" class="form-control" name="last" value="<?php echo $found['last']; ?>">
         </div>
 
         <div class="form-group">
             <label>Phone:</label>
-            <input type="phone" class="form-control" placeholder="801-111-1234" name="phone"></input>
+            <input type="phone" class="form-control" name="phone" value="<?php echo $found['phone']; ?>"></input>
         </div>
 
         <div class="form-group">
         <label>Department</label>
         <select class="form-control mb-2" name="dept">
+          <option><?php echo $found['dept']; ?></option>
+          <option>-----------</option>
           <option>Animation</option>
           <option>Web Development</option>
           <option>User Experience</option>
@@ -60,13 +72,9 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="textfieldInput">Photo</label>
-      <input type="file" name="photo" class="form-control" id="textfieldInput">
-  </div>
-
+<input type="hidden" name="id" value="<?php echo $found['id']; ?>">
                
-        <button type="submit" class="btn btn-primary mt-3" value="submit">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3" value="submit">Update</button>
       </form>
 
     </div>

@@ -6,9 +6,9 @@ $phone = $_POST['phone'];
 $photo = $_POST['photo'];
 
 // Make photo path and name
-$ext = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+$ext = pathinfo( $_FILES['photo']['name'], PATHINFO_EXTENSION);
 $filename = $first. $last.time().'.'.$ext.'';
-$filepath ='/dgm3760/manage-records/';
+$filepath =  'employees/';
 
 // Verify the image is valid ---------------------------------------------
 $validImage = true;
@@ -51,7 +51,7 @@ if($validImage == true) {
   // Close connection
   mysqli_close($dbconnection);
 
-  echo $query;
+  
 
 } else {
   // Give user ability to try again
@@ -74,6 +74,9 @@ if($validImage == true) {
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title>Thanks Page</title>
 </head>
+<?php
+include_once('navbar.php');
+?>
 <div class="container">
 <h1>Employee Successfully Added</h1>
 
