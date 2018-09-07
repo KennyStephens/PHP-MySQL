@@ -1,4 +1,6 @@
 <?php
+require_once('authorize.php');
+
 require_once('variables.php');
 
 // Build connection
@@ -30,21 +32,28 @@ $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
 <h1>Blog Comments</h1>
 
 <?php
-    
-
-
+    if(mysqli_num_rows($result) == 0) {
+      echo '<p>All comments have been approved.</p>';
+    } else {
 // Display findings
 while($row = mysqli_fetch_array($result)) {
-    echo '<div class="panel panel-default">';
-    echo '<div class="panel-body">';
-    echo '<a class="btn btn-success btn-sm" href=approve2.phpid='.$row['id'].'>Approve</a>';
-    echo '<a class="btn btn-danger btn-sm" href=delete.phpid='.$row['id'].'>Delete</a>';
-    echo '<h3>'.$row['name'].'</h3>';
-    echo '<p>'.$row['topic'].'</p>';
-    echo '<p>'.$row['date'].'</p>';
-    echo '</div>';
-    echo '</div>';
+  echo '<div class="panel panel-default">';
+  echo '<div class="panel-body">';
+
+	echo '<h3>'.$row['name'].'</h3>';
+	echo '<p class = "topic">'.$row['topic'].'</p>';
+	echo '<p>'.$row['comment'].'</p>';
+  echo '<p class = "date">'.$row['date'].'</p>';
+  echo '<a class="btn btn-sm btn-success mr-1" href = "approve2.php?id='.$row['id'].'">Approve</a>';
+  echo '<a class="btn btn-sm btn-danger" href = "delete.php?id='.$row['id'].'">Delete</a>';
+  echo '<hr>';
+  echo '</div>';
+  echo '</div>';
 }
+    }
+
+
+
 ?>
 
 
