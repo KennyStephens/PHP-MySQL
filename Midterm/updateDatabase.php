@@ -4,13 +4,14 @@ $expertise = $_POST['expertise'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 $specialization = $_POST['specialization'];
-$photo = $_POST['photo'];
+$id = $_POST['id'];
+
 
   // Build connection to database ---------------------------------------
   $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
 
   // Build the query
-  $query = "UPDATE midterm SET first='$first', last='$last', dept='$department', phone='$phone' WHERE id=$id";
+  $query = "UPDATE midterm SET name='$name', expertise='$expertise', phone='$phone', email='$email', specialization='$specialization' WHERE id=$id";
 
   // Talk to database
   $result = mysqli_query($dbconnection, $query) or die ('Query Failed');

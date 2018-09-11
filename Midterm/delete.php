@@ -1,3 +1,9 @@
+<?php
+require_once('authorize.php')
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,20 +19,24 @@
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Delete Employees</h1>
+<h1 class="mt-3">Delete Employees</h1>
 
 <?php
 // connection
 $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
 // build query
-$query = "SELECT * FROM midterm ORDER BY last ASC";
+$query = "SELECT * FROM midterm ORDER BY name ASC";
 // send to database
 $result = mysqli_query($dbconnection, $query) or die ('query failed');
 while($row = mysqli_fetch_array($result)) {
+    echo '<div class="card mb-3 shadow">';
+    echo '<div class="card-body">';
     echo '<p>';
     echo $row['name'] .', '. $row['phone'] .' - '. $row['expertise'];
-    echo '<a href="delete2.php?id='.$row[id].'"> Delete</a>';
+    echo '<a href="delete2.php?id='.$row[id].'"> <button class="btn btn-danger btn-success btn-sm ml-4">Delete</button></a>';
     echo '</p>';
+    echo '</div>';
+    echo '</div>';
 }
 // close collection
 mysqli_close($dbconnection);

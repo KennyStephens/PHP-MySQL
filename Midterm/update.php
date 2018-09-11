@@ -13,15 +13,7 @@ $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
 // Put results in variable
 $found = mysqli_fetch_array($result);
 
-// // Verify photo exists
-// if(file_exists('employees/'.$found['photo']) && $found['photo'] <> '') {
-//   //echo 'image found';
-//   $photoPath = 'employees/'.$found['photo'];
-// } else {
-//   // echo 'image missing'
-//   $photoPath = 'employees/missing.jpg';
-// }
-// ?>
+?>
 
 
 <!doctype html>
@@ -47,7 +39,7 @@ include_once('navbar.php');
       <form action="updateDatabase.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label>Name:</label>
-          <input type="text" class="form-control" placeholder="First Name" name="name" value="<?php echo $found['name']; ?>">
+          <input type="text" class="form-control" name="name" value="<?php echo $found['name']; ?>">
         </div>
 
         <div class="form-group">
@@ -71,16 +63,9 @@ include_once('navbar.php');
         </div>
 
         <div class="form-group">
-        <label>Department</label>
-        <select class="form-control mb-2" name="dept">
-          <option><?php echo $found['dept']; ?></option>
-          <option>-----------</option>
-          <option>Animation</option>
-          <option>Web Development</option>
-          <option>User Experience</option>
-          <option>Computer Science</option>
-      </select>
-    </div>
+          <label for="exampleFormControlTextarea1">Area of Specialization Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="specialization"></textarea>
+        </div>
 
 <input type="hidden" name="id" value="<?php echo $found['id']; ?>">
                

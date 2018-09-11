@@ -13,19 +13,24 @@
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Employee Directory</h1>
+<h1 class="mt-3">Employee Directory</h1>
 
 <?php
 // connection
 $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
 // build query
-$query = "SELECT * FROM midterm ORDER BY last ASC";
+$query = "SELECT * FROM midterm ORDER BY name ASC";
 // send to database
 $result = mysqli_query($dbconnection, $query) or die ('query failed');
 while($row = mysqli_fetch_array($result)) {
+  echo '<div class="card mb-3 shadow">';
+  echo '<div class="card-body">';
   echo $row['name'].', '. $row['phone'].' - '.$row['expertise'];
-  echo '<a href="update.php?id='.$row['id'].'"> - Update </a>';
+  echo ' - <a href="update.php?id='.$row['id'].'">  Update </a>';
+  echo ' - <a href="email.php?id='.$row['id'].'">  Email </a>';
   echo '</p>';
+  echo '</div>';
+  echo '</div>';
 }
 
 // Hang up

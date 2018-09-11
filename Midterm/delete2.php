@@ -8,7 +8,7 @@ $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','the
 if(isset($_POST['submit'])) {
   
   // Build select query
-  $query = "DELETE FROM employee_simple WHERE id=$_POST[id]";
+  $query = "DELETE FROM midterm WHERE id=$_POST[id]";
   
 
   // Delete record
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])) {
   @unlink($_POST['photo']);
 
   // Redirect
-  header("Location: http://thedevelopedweb.com/dgm3760/manage-records/delete.php");
+  header("Location: http://thedevelopedweb.com/dgm3760/midterm/delete.php");
 
   exit;
 };
@@ -27,7 +27,7 @@ if(isset($_POST['submit'])) {
 
 
 // Build query
-$query = "SELECT * FROM employee_simple WHERE id=$employee_id";
+$query = "SELECT * FROM midterm WHERE id=$employee_id";
 
 // Talk to database
 $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
@@ -53,22 +53,26 @@ $found = mysqli_fetch_array($result);
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Deleting an Employee</h1>
+<h1 class="mt-3">Deleting an Employee</h1>
 <form action="delete2.php" method="POST">
 <?php
 
 // Display what we found
-echo '<h2>'.$found['first'] .' '. $found['last'].'</h2>';
+echo '<div class="card mb-3 shadow">';
+echo '<div class="card-body">';
+echo '<h2>'.$found['name'] .'</h2>';
 echo '<p>';
-echo $found['dept'].'<br>'.$found['phone'];
+echo $found['expertise'].'<br>'.$found['phone'];
 echo '</p>';
+echo '</div>';
+echo '</div>';
 ?>
 
 <input type="hidden" name="photo" value="employees/<?php echo $found['photo']; ?>"/>
 <input type="hidden" name="id" value="<?php echo $found['id']; ?>"/>
 
-<button type="submit" name="submit" class="btn btn-primary btn-sm mt-3">Delete This Person</button>
-<a href="delete.php">Cancel</a>
+<button type="submit" name="submit" class="btn btn-primary mt-3">Delete This Person</button>
+<a href="delete.php"><button class="btn btn-secondary btn-sm mt-3">Cancel</button></a>
 </form>
 
 
