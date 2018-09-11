@@ -45,7 +45,7 @@ $found = mysqli_fetch_array($result);
         </div>
 
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Area of Specialization Description</label>
+          <label for="exampleFormControlTextarea1">Message</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
         </div>
       

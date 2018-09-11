@@ -79,7 +79,7 @@ if($validImage == true) {
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Employee Successfully Added</h1>
+<h1 class="mt-3">Employee Successfully Added</h1>
 
 <?php
 echo "$name <br>";

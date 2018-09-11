@@ -22,6 +22,8 @@ $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','the
 $query = "SELECT * FROM midterm ORDER BY name ASC";
 // send to database
 $result = mysqli_query($dbconnection, $query) or die ('query failed');
+
+
 while($row = mysqli_fetch_array($result)) {
   echo '<div class="card mb-3 shadow">';
   echo '<div class="card-body">';
