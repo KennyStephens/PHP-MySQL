@@ -1,4 +1,5 @@
 <?php
+require_once('authorize.php')
 $employee_id = $_GET[id];
 
 // Build connection
