@@ -1,4 +1,4 @@
-<?php include_once('protect.php'); ?>
+<?php //include_once('protect.php'); ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,7 +23,7 @@
         <li>Substation 6<a href="details.php"> View Details</a></li>
     </ul>
 
-    <a href="report.php"><button>Report an Outage</button></a>
+    <a href="report.php"><button class="btn btn-primary">Report an Outage</button></a>
     </div>
   
 

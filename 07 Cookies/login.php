@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 
       </form>
 
-      <p><a href="index.php">Cancel</a></p>
+      <span><a href="index.php">Cancel</a></span>
 
     </div>
   

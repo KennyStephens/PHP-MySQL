@@ -1,8 +1,10 @@
 <?php
 require_once('variables.php');
 
+$feedback = '';
+
 // Build connection to database
-$dbconnection = mysqli_connect('HOST','USER','PASSWORD','DB_NAME') or die ('Connection to the database failed.');
+$dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
 if (isset($_POST['submit'])) {
     $firstname = mysqli_real_escape_string($dbconnection, trim($_POST['firstname']));
@@ -13,8 +15,6 @@ if (isset($_POST['submit'])) {
 
     // Double check to make sure that we have values
     if(!empty($username) && !empty($password1) && !empty($password2) && ($password1 == $password2)) {
-        echo 'Passwords Match AND username has a value';
-    }
 
     $query = "SELECT * FROM users WHERE username = '$username'";
     $alreadyexists = mysqli_query($dbconnection, $query) or die ('Query failed');
@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
     if(mysqli_num_rows($alreadyexists) == 0) {
         // Insert the data
         $query = "INSERT INTO users (firstname, lastname, username, password, date) VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), NOW())";
-        // Confirm Message
         
+        // Confirm Message
         $feedback = '<p>Your new account has been successfully created</p><br><p>Return to the <a href="index.php">main page</a></p>';
 
         // Make the cookies
@@ -39,8 +39,9 @@ if (isset($_POST['submit'])) {
     } else {
         // Username exists
         $feedback = '<p>An account already exists for this username. Please use a different name</p>';
-        $username = '';
+        // $username = '';
     }
+}
 }
 
 
@@ -57,45 +58,45 @@ if (isset($_POST['submit'])) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Manage Records</title>
+    <title>Sign Up</title>
   </head>
 
   <body>
     <div class="container">
     <?php include_once('navbar.php'); ?>
       <h1 class="mt-3">Sign Up</h1>
-      <?php echo $feedback ?>
+      <?php echo $feedback; ?>
 
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="signup.php" method="POST" enctype="multipart/form-data">
       
       <h3>Registration Info</h3>
         <div class="form-group">
           <label>First Name:</label>
-          <input type="text" class="form-control" placeholder="John Smith" name="firstname" required value="<?php if(!empty($firstname)) echo $firstname; ?>">
+          <input type="text" class="form-control" placeholder="John" name="firstname" required value="<?php if(!empty($firstname)) echo $firstname; ?>">
         </div>
 
         <div class="form-group">
           <label>Last Name:</label>
-          <input type="text" class="form-control" placeholder="John Smith" name="lastname" required value="<?php if(!empty($lastname)) echo $lastname; ?>">
+          <input type="text" class="form-control" placeholder="Smith" name="lastname" required value="<?php if(!empty($lastname)) echo $lastname; ?>">
         </div>
 
         <div class="form-group">
           <label>Username:</label>
-          <input type="text" class="form-control" placeholder="John Smith" name="username" required value="<?php if(!empty($username)) echo $username; ?>">
+          <input type="text" class="form-control"  name="username" required value="<?php if(!empty($username)) echo $username; ?>">
         </div>
 
 
         <div class="form-group">
           <label>Password:</label>
-          <input type="password" class="form-control" placeholder="John Smith" name="password1" required>
+          <input type="password" class="form-control"  name="password1" required>
         </div>
 
         <div class="form-group">
           <label>Password (retype):</label>
-          <input type="password" class="form-control" placeholder="John Smith" name="password2" required>
+          <input type="password" class="form-control"  name="password2" required>
         </div>
        
-        <button type="submit" class="btn btn-primary mt-3" value="submit">Sign Up</button>
+        <button type="submit" class="btn btn-primary mt-3" value="submit" name="submit">Sign Up</button>
 
       </form>
 
