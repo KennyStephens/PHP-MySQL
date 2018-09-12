@@ -1,4 +1,4 @@
-<nav>
+<nav class="mt-4">
 <p>Hello
 <?php
     if(isset($_COOKIE['username'])) {

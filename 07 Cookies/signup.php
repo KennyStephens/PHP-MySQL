@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
        mysqli_query($dbconnection, $query) or die ('query failed');
         
         // Confirm Message
-        $feedback = '<p>Your new account has been successfully created. Return to the <a href="index.php">main page</a>.</p>';
+        $feedback = '<p>Your new account has been successfully created. Return to the <a href="index.php">main page</a>.</p>'; 
 
         // Make the cookies
         setcookie('username', $username, time() + (60*60*24*30)); // Expires in 30 days
@@ -64,7 +64,9 @@ if (isset($_POST['submit'])) {
     <title>Sign Up</title>
   </head>
 
-  <body>
+  <body style="background: #E0EAFC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
     <div class="container">
     <?php include_once('navbar.php'); ?>
       <h1 class="mt-3">Sign Up</h1>
