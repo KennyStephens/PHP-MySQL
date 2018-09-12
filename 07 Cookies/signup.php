@@ -16,13 +16,14 @@ if (isset($_POST['submit'])) {
     // Double check to make sure that we have values
     if(!empty($username) && !empty($password1) && !empty($password2) && ($password1 == $password2)) {
 
-    $query = "SELECT * FROM users WHERE username = '$username'";
-    $alreadyexists = mysqli_query($dbconnection, $query) or die ('Query failed');
+      $query = "SELECT * FROM users WHERE username = '$username'";
+      $alreadyexists = mysqli_query($dbconnection, $query) or die ('query failed');
 
     // Make sure there isn't a duplicate username in DB
     if(mysqli_num_rows($alreadyexists) == 0) {
         // Insert the data
-        $query = "INSERT INTO users (firstname, lastname, username, password, date) VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), now())";
+        $query = "INSERT INTO users (firstname, lastname, username, password, date) VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), NOW())";
+       mysqli_query($dbconnection, $query) or die ('query failed');
         
         // Confirm Message
         $feedback = '<p>Your new account has been successfully created</p><br><p>Return to the <a href="index.php">main page</a></p>';
