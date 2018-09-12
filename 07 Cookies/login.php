@@ -6,8 +6,9 @@ $feedback = '<p><a href="signup.php">Create an account</a></p>';
 
 // If the user isn't logged in, try to log them in
 if (isset($_POST['submit'])) {
+
     // Build connection to database
-    $dbconnection = mysqli_connect('HOST','USER','PASSWORD','DB_NAME') or die ('Connection to the database failed.');
+    $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
     // Grab user entered login data
     $username = mysqli_real_escape_string($dbconnection, trim($_POST['username']));
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
     $query = "SELECT * FROM users WHERE username = '$username' and password = SHA('$password')";
     $data = mysqli_query($dbconnection, $query) or die ('Query failed');
 
-    if(mysqli_number_rows($data) == 1 ) {
+    if(mysqli_num_rows($data) == 1 ) {
         $row = mysqli_fetch_array($data);
 
         // Make the cookies
@@ -65,7 +66,7 @@ if (isset($_POST['submit'])) {
           <input type="password" class="form-control"  name="password" required value="<?php if(!empty($password)) echo $password; ?>">
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3" value="submit">Login</button>
+        <button type="submit" class="btn btn-primary mt-3" value="submit" name="submit">Login</button>
 
       </form>
 

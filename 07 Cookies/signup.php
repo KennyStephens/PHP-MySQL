@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
        mysqli_query($dbconnection, $query) or die ('query failed');
         
         // Confirm Message
-        $feedback = '<p>Your new account has been successfully created</p><br><p>Return to the <a href="index.php">main page</a></p>';
+        $feedback = '<p>Your new account has been successfully created. Return to the <a href="index.php">main page</a>.</p>';
 
         // Make the cookies
         setcookie('username', $username, time() + (60*60*24*30)); // Expires in 30 days
