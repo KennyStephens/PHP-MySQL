@@ -17,7 +17,7 @@
     <?php include_once('navbar.php'); ?>
       <h1 class="mt-3">Report an Outage</h1>
 
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="report.php" method="POST" enctype="multipart/form-data">
       
       <h3>Your Information</h3>
         <div class="form-group">

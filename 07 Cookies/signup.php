@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     // Make sure there isn't a duplicate username in DB
     if(mysqli_num_rows($alreadyexists) == 0) {
         // Insert the data
-        $query = "INSERT INTO users (firstname, lastname, username, password, date) VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), NOW())";
+        $query = "INSERT INTO users (firstname, lastname, username, password, date) "." VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), now())";
         
         // Confirm Message
         $feedback = '<p>Your new account has been successfully created</p><br><p>Return to the <a href="index.php">main page</a></p>';
@@ -31,17 +31,17 @@ if (isset($_POST['submit'])) {
         setcookie('username', $username, time() + (60*60*24*30)); // Expires in 30 days
         setcookie('firstname', $firstname, time() + (60*60*24*30)); // Expires in 30 days
         setcookie('lastname', $lastname, time() + (60*60*24*30)); // Expires in 30 days
-
+        
         // Close connection
         mysqli_close($dbconnection);
         // Exit page
-        exit();
+        // exit();
     } else {
         // Username exists
         $feedback = '<p>An account already exists for this username. Please use a different name</p>';
         // $username = '';
     }
-}
+} 
 }
 
 
