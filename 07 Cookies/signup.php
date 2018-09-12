@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     // Make sure there isn't a duplicate username in DB
     if(mysqli_num_rows($alreadyexists) == 0) {
         // Insert the data
-        $query = "INSERT INTO users (firstname, lastname, username, password, date) "." VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), now())";
+        $query = "INSERT INTO users (firstname, lastname, username, password, date) VALUES ('$firstname', '$lastname', '$username', SHA('$password1'), now())";
         
         // Confirm Message
         $feedback = '<p>Your new account has been successfully created</p><br><p>Return to the <a href="index.php">main page</a></p>';
