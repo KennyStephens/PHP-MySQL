@@ -42,7 +42,9 @@ if (isset($_POST['submit'])) {
         $feedback = '<p>An account already exists for this username. Please use a different name</p>';
         // $username = '';
     }
-} 
+} else {
+  $feedback = '<p>Your passwords don\'t match. Try again</p>';
+}
 }
 
 

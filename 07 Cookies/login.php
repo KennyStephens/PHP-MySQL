@@ -69,7 +69,6 @@ if (isset($_POST['submit'])) {
 
       </form>
 
-      <span><a href="index.php">Cancel</a></span>
 
     </div>
   
