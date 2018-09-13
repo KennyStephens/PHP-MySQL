@@ -5,7 +5,7 @@ require_once('variables.php');
   $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
 // Get the emphasis from database
-$query = "SELECT * FROM dgm_emphasis ORDER BY value";
+$query = "SELECT * FROM char_race ORDER BY value";
 
 // talk to database
 $result = mysqli_query($dbconnection, $query) or die ('Query failed');
@@ -25,16 +25,17 @@ $result = mysqli_query($dbconnection, $query) or die ('Query failed');
     <title>Search</title>
   </head>
 
-  <body style="background: #E0EAFC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+  <body style="background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
 <?php include_once('navbar.php');   ?>
     <div class="container">
-    <h1 class="mt-3">Search</h1>
+    <h1 class="mt-3 text-light">Search</h1>
  <ul class="list-group">
     <?php  
     while($row = mysqli_fetch_array($result)) {
-        echo '<li class="list-group-item"><a href="index.php?emphasis='.$row['emphasis_id'].'">';
+        echo '<li class="list-group-item"><a href="index.php?race='.$row['char_id'].'">';
         echo $row['value'];
         echo '</a></li>';
     };

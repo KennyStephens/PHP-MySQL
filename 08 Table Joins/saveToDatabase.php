@@ -1,17 +1,17 @@
 <?php
 require_once('variables.php');
 
-    $first = $_POST['firstname'];
-    $last = $_POST['lastname'];
-    $gender = $_POST['gender'];
-    $website = $_POST['website'];
-    $emphasis = $_POST['emphasis'];
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $righteousness = $_POST['righteousness'];
+    $clan = $_POST['clan'];
+    $race = $_POST['race'];
 
  // Build connection to database ---------------------------------------
  $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
 // Build the query
-$query = "INSERT INTO dgm_student(first, last, gender, website, emphasis) VALUES ('$first','$last','$gender','$website','$emphasis')";
+$query = "INSERT INTO character_info(name, age, righteousness, clan, race) VALUES ('$name','$age','$righteousness','$clan','$race')";
 
 // Talk to database
 $result = mysqli_query($dbconnection, $query) or die ('Query failed');
@@ -21,9 +21,9 @@ $result = mysqli_query($dbconnection, $query) or die ('Query failed');
 $recent_id = mysqli_insert_id($dbconnection);
 
 // Loop through array that contains all the packages they selected
-foreach($_POST['packages'] as $package_id) {
+foreach($_POST['trait'] as $ch_id) {
     // Build the query
-$query = "INSERT INTO dgm_softwareskill(id, package_id) VALUES ('$recent_id','$package_id')";
+$query = "INSERT INTO char_skill(id, ch_id) VALUES ('$recent_id','$ch_id')";
 
 // Talk to database
 $result = mysqli_query($dbconnection, $query) or die ('Query failed');
@@ -39,11 +39,11 @@ mysqli_close($dbconnection);
 $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
 // Get the emphasis from database
-$query = "SELECT * FROM dgm_emphasis";
+$query = "SELECT * FROM char_race";
 $resultEmphasis = mysqli_query($dbconnection, $query) or die ('Query failed');
 
 // Get the software names
-$query = "SELECT * FROM dgm_packages ORDER BY package ASC";
+$query = "SELECT * FROM char_traits ORDER BY trait ASC";
 $resultPackage = mysqli_query($dbconnection, $query) or die ('Query failed');
 
 
@@ -72,8 +72,8 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
 <?php include_once('navbar.php');   ?>
     <div class="container">
       
-      <h3 class="mt-3">An entry for <?php $first .' '. $last ?> has been added to the DGM database.</h3>
-        <a href="new.php">Add another student</a><br>
+      <h3 class="mt-3">Your character has been added to the character database.</h3>
+        <a href="new.php">Add another character</a><br>
       <a href="index.php">Return to the home page</a>
       
 
