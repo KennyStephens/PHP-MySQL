@@ -45,6 +45,26 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
             echo ($row['gender'] == 1 ? 'Mr.' : 'Ms.') . $row['last'];
             echo ' is a Digital Media Student emphasizing in '. $row['value'].'.</p>';
 
+            echo '<p>';
+            // Ternary operator
+            echo ($row['gender'] == 1 ? 'He ' : 'She ');
+            echo 'is competent with the following software packages:</p>';
+
+            // Assign user id to variable
+            $theid = $row['id'];
+
+            // Build another inner join
+            $query2 = "SELECT * FROM dgm_softwareskill INNER JOIN dgm_packages ON (dgm_softwareskill.package_id = dgm_packages.package_id) WHERE id=$theid";
+
+            // Talk to database
+            $resultPackage = mysqli_query($dbconnection, $query2) or die ('Package Query Failed');
+
+            while($row2 = mysqli_fetch_array($resultPackage)) {
+                echo '<p class="mb-0">'.$row2['package'].'</p>';
+            }
+
+
+
             echo '</div>';
             echo '</div>';
             echo '<br>';
