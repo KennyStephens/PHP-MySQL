@@ -34,7 +34,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
  <ul class="list-group">
     <?php  
     while($row = mysqli_fetch_array($result)) {
-        echo '<li class="list-group-item"><a href="index.php?id='.$row['emphasis_id'].'">';
+        echo '<li class="list-group-item"><a href="index.php?emphasis='.$row['emphasis_id'].'">';
         echo $row['value'];
         echo '</a></li>';
     };

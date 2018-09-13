@@ -1,11 +1,20 @@
 <?php
+$queryaddition = '';
+
+if(isset($_GET['emphasis'])) {
+  $queryaddition = "WHERE emphasis=$_GET[emphasis]";
+}
+
+
+
+
 require_once('variables.php');
 
  // Build connection to database ---------------------------------------
  $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
  // Build the query for inner join
- $query = "SELECT * FROM dgm_student INNER JOIN dgm_emphasis ON (dgm_student.emphasis = dgm_emphasis.emphasis_id) ORDER BY last";
+ $query = "SELECT * FROM dgm_student INNER JOIN dgm_emphasis ON (dgm_student.emphasis = dgm_emphasis.emphasis_id) $queryaddition ORDER BY last";
 
  // Talk to databse
  $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
@@ -36,6 +45,11 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
     <div class="container">
        
       <?php
+        if(mysqli_num_rows($result) == 0) {
+          echo '<p>Sorry but no matches were found.</p>';
+        }
+
+
         while($row = mysqli_fetch_array($result)) {
             echo '<div class="card mt-2 d-block">';
             echo '<div class="card-body">';
