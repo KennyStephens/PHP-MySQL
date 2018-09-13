@@ -29,7 +29,7 @@ $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
 <?php
 // Display findings
 while($row = mysqli_fetch_array($result)) {
-  echo '<div class="card m-1">';
+  echo '<div class="card mt-1">';
   echo '<div class="card-body">';
 
 	echo '<h3>'.$row['name'].'</h3>';

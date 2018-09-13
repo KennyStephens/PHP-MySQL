@@ -1,51 +1,14 @@
 <?php
 require_once('variables.php');
 
-    $first = $_POST['firstname'];
-    $last = $_POST['lastname'];
-    $gender = $_POST['gender'];
-    $website = $_POST['website'];
-    $emphasis = $_POST['emphasis'];
-
  // Build connection to database ---------------------------------------
  $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
-// Build the query
-$query = "INSERT INTO dgm_student(first, last, gender, website, emphasis) VALUES ('$first','$last','$gender','$website','$emphasis')";
+ // Build the query for inner join
+ $query = "SELECT * FROM dgm_student INNER JOIN dgm_emphasis ON (dgm_student.emphasis = dgm_emphasis.emphasis_id) ORDER BY last";
 
-// Talk to database
-$result = mysqli_query($dbconnection, $query) or die ('Query failed');
-
-// Update software skills
-// This id was just added
-$recent_id = mysqli_insert_id($dbconnection);
-
-// Loop through array that contains all the packages they selected
-foreach($_POST['packages'] as $package_id) {
-    // Build the query
-$query = "INSERT INTO dgm_softwareskill(id, package_id) VALUES ('$recent_id','$package_id')";
-
-// Talk to database
-$result = mysqli_query($dbconnection, $query) or die ('Query failed');
-
-}; // End of foreach
-
-mysqli_close($dbconnection);
-
-
-  require_once('variables.php');
-
-  // Build connection to database
-$dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
-
-// Get the emphasis from database
-$query = "SELECT * FROM dgm_emphasis";
-$resultEmphasis = mysqli_query($dbconnection, $query) or die ('Query failed');
-
-// Get the software names
-$query = "SELECT * FROM dgm_packages ORDER BY package ASC";
-$resultPackage = mysqli_query($dbconnection, $query) or die ('Query failed');
-
+ // Talk to databse
+ $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
 
 
 
@@ -63,7 +26,7 @@ $resultPackage = mysqli_query($dbconnection, $query) or die ('Query failed');
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Confirm Addition</title>
+    <title>Show All Students</title>
   </head>
 
   <body style="background: #E0EAFC;  /* fallback for old browsers */
@@ -71,14 +34,37 @@ background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-2
 background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
 <?php include_once('navbar.php');   ?>
     <div class="container">
-      
-      <h3 class="mt-3">An entry for <?php $first .' '. $last ?> has been added to the DGM database.</h3>
-        <a href="new.php">Add another student</a><br>
-      <a href="index.php">Return to the home page</a>
-      
+       
+      <?php
+        while($row = mysqli_fetch_array($result)) {
+            echo '<div class="card mt-2 d-block">';
+            echo '<div class="card-body">';
+            echo '<h2>'.$row['first'].' '.$row['last'].'</h2>';
+            echo '<p>';
+            // Ternary operator
+            echo ($row['gender'] == 1 ? 'Mr.' : 'Ms.') . $row['last'];
+            echo ' is a Digital Media Student emphasizing in '. $row['value'].'.</p>';
+
+            echo '</div>';
+            echo '</div>';
+            echo '<br>';
+
+        } // end of while
 
 
-    </div>
+
+
+    ?>
+
+ 
+      
+
+      
+    </div> <!--end of container-->
+
+    <?php
+        mysqli_close($dbconnection);
+    ?>
   
 
 
@@ -91,4 +77,3 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
-

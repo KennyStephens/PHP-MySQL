@@ -2,7 +2,7 @@
   require_once('variables.php');
 
   // Build connection to database
-$dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
+  $dbconnection = mysqli_connect(HOST,USER,PASSWORD,DB_NAME) or die ('Connection to the database failed.');
 
 // Get the emphasis from database
 $query = "SELECT * FROM dgm_emphasis";
@@ -63,14 +63,14 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, F
       <h3 class="mt-4">Gender</h3>
       <hr>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" name="gender" checked>
-            <label class="form-check-label" for="exampleRadios1">
+          <input class="form-check-input" type="radio" id="exampleRadios1" value="1" name="gender" checked>
+            <label class="form-check-label">
             Male
             </label>
         </div>
         <div class="form-check mb-5">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="2" name="gender" checked>
-            <label class="form-check-label" for="exampleRadios1">
+          <input class="form-check-input" type="radio" id="exampleRadios1" value="2" name="gender" checked>
+            <label class="form-check-label">
             Female
             </label>
         </div>
