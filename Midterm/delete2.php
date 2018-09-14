@@ -71,7 +71,7 @@ echo '</div>';
 <input type="hidden" name="photo" value="employees/<?php echo $found['photo']; ?>"/>
 <input type="hidden" name="id" value="<?php echo $found['id']; ?>"/>
 
-<button type="submit" name="submit" class="btn btn-primary mt-3">Delete This Person</button>
+<button type="submit" name="submit" class="btn btn-danger mt-3">Delete This Person</button>
 <a href="delete.php"><button class="btn btn-secondary btn-sm mt-3">Cancel</button></a>
 </form>
 

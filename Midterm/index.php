@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +25,20 @@ $query = "SELECT * FROM midterm ORDER BY name ASC";
 $result = mysqli_query($dbconnection, $query) or die ('query failed');
 
 
+
 while($row = mysqli_fetch_array($result)) {
+
+
+
   echo '<div class="card mb-3 shadow">';
   echo '<div class="card-body">';
+  echo '<img class="m-2" src="employees/'.$row['photo'].'"></img>';
   echo $row['name'].', '. $row['phone'].' - '.$row['expertise'];
   echo ' - <a href="update.php?id='.$row['id'].'">  Update </a>';
   echo ' - <a href="email.php?id='.$row['id'].'">  Email </a>';
   echo '</p>';
+  echo '<br>';
+  echo '<p>'.$row['specialization'].'</p>';
   echo '</div>';
   echo '</div>';
 }
