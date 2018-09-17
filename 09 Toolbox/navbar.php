@@ -9,7 +9,7 @@
         <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="new.php">New</a>
+        <a class="nav-link" href="add.php">Add New Fan</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>

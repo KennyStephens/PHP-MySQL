@@ -46,7 +46,7 @@
   <body>
     <div class="container">
     
-      <h1 class="mt-3">Add to Music Fan list</h1>
+      <h1 class="mt-3">Add to Music Fan List</h1>
 
       <form action="add.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
@@ -96,18 +96,18 @@
           <label>Month</label>
           <select class="form-control mb-2" name="month">
             <option>Month</option>
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>010</option>
-            <option>11</option>
-            <option>12</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
           </select>
         </div>
 
