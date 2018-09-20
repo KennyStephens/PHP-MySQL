@@ -1,17 +1,18 @@
 <?php
-$name = $_POST['name'];
-$expertise = $_POST['expertise'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$specialization = $_POST['specialization'];
+require_once('variables.php');
+
+$title = $_POST['title'];
+$rating = $_POST['rating'];
+$description = $_POST['description'];
+$photo = $_POST['photo'];
 $id = $_POST['id'];
 
 
   // Build connection to database ---------------------------------------
-  $dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
+  $dbconnection = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die ('Failed to connect to database');
 
   // Build the query
-  $query = "UPDATE midterm SET name='$name', expertise='$expertise', phone='$phone', email='$email', specialization='$specialization' WHERE id=$id";
+  $query = "UPDATE capstone SET title='$title', rating='$rating', description='$description' WHERE id=$id";
 
   // Talk to database
   $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
@@ -37,13 +38,12 @@ $id = $_POST['id'];
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Employee Successfully Updated</h1>
+<h1>Movie Successfully Updated</h1>
 
 <?php
-echo "$name <br>";
-echo "$phone<br>";
-echo "$expertise <br>";
-echo '<img src="'.$filepath.$filename.'"/>';
+echo "$title <br>";
+echo "$rating<br>";
+echo "$description <br>";
 
 ?>
   </div>

@@ -1,12 +1,13 @@
 <?php
 require_once('authorize.php');
-$employee_id = $_GET[id];
+require_once('variables.php');
+$movie_id = $_GET[id];
 
 // Build connection
-$dbconnection = mysqli_connect('localhost','thedevf5_3760use','I22slh#DQCU','thedevf5_3760test') or die ('Connection to the database failed.');
+$dbconnection = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die ('Failed to connect to database');
 
 // Build query
-$query = "SELECT * FROM midterm WHERE id=$employee_id";
+$query = "SELECT * FROM capstone WHERE id=$movie_id";
 
 // Talk to database
 $result = mysqli_query($dbconnection, $query) or die ('Query Failed');
@@ -27,7 +28,7 @@ $found = mysqli_fetch_array($result);
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Update Employee</title>
+    <title>Update Movie Databse</title>
   </head>
   <?php
 include_once('navbar.php');
@@ -35,42 +36,32 @@ include_once('navbar.php');
   <body>
     <div class="container">
     
-      <h4 class="mt-3">Update Employee</h4>
+      <h4 class="mt-3">Update Movie Database</h4>
 
       <form action="updateDatabase.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-          <label>Name:</label>
-          <input type="text" class="form-control" name="name" value="<?php echo $found['name']; ?>">
+          <label>Movie Title</label>
+          <input type="text" class="form-control" name="title" value="<?php echo $found['title']; ?>">
         </div>
 
         <div class="form-group">
-          <label>Area of Expertise</label>
-          <select class="form-control mb-2" name="expertise">
-            <option>Animation</option>
-            <option>Web Development</option>
-            <option>User Experience</option>
-            <option>Computer Science</option>
+          <label>Rating</label>
+          <select class="form-control mb-2" name="rating">
+            <option>G</option>
+            <option>PG</option>
+            <option>PG-13</option>
+            <option>R</option>
         </select>
       </div>
 
         <div class="form-group">
-          <label>Email:</label>
-          <input type="email" class="form-control" name="email" value="<?php echo $found['email']; ?>">
-        </div>
-
-        <div class="form-group">
-            <label>Phone:</label>
-            <input type="phone" class="form-control" name="phone" value="<?php echo $found['phone']; ?>"></input>
-        </div>
-
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Area of Specialization Description</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="specialization"></textarea>
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" ></textarea>
         </div>
 
 <input type="hidden" name="id" value="<?php echo $found['id']; ?>">
                
-        <button type="submit" class="btn btn-primary mt-3" value="submit">Update</button>
+        <button type="submit" class="btn btn-primary mt-3" value="submit" name="submit">Update Database</button>
       </form>
 
     </div>

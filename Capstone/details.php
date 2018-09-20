@@ -16,12 +16,18 @@ include_once('navbar.php');
 
 <?php
 require_once('variables.php');
+
+$id = $_GET['id'];
+
+
 // connection
 $dbconnection = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die ('Failed to connect to database');
 // build query
-$query = "SELECT * FROM capstone ORDER BY title ASC";
+$query = "SELECT * FROM capstone WHERE id='$id'";
+
 // send to database
 $result = mysqli_query($dbconnection, $query) or die ('query failed');
+
 
 while($row = mysqli_fetch_array($result)) {
 
@@ -33,15 +39,51 @@ while($row = mysqli_fetch_array($result)) {
   echo '<br>';
   echo '<h4>Description:</h4>';
   echo '<p>'.$row['description'].'</p>';
-  echo '<a href="details.php?id='.$row['id'].'">See Details</a>';
-  echo '</p>';
+  echo '<a href="update.php?id='.$row['id'].'">  Update |</a>';
+  echo '<a href="comment.php?id='.$row['id'].'">  Comment </a>';
   echo '</div>';
   echo '</div>';
 }
 
+// // Hang up
+// mysqli_close($dbconnection);
+?>
+
+<?php
+require_once('variables.php');
+
+// $comment_id = $_GET['id'];
+
+// connection
+$dbconnection = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die ('Failed to connect to database');
+// build query
+$query2 = "SELECT * FROM capstone_comments";
+echo $comment_id;
+// send to database
+$result2 = mysqli_query($dbconnection, $query2) or die ('query failed');
+
+
+while($row2 = mysqli_fetch_array($result2)) {
+
+    echo '<div class="card mb-3 shadow">';
+    echo '<div class="card-body">';
+    echo '<h4>Rating:</h4>';
+    echo '<p class="mb-2">'.$row2['rating'].'</p>';
+
+    echo '<h4>Comment:</h4>';
+    echo '<p class="mb-0">'.$row2['comment'].'</p>';
+   
+    echo '</div>';
+    echo '</div>';
+  }
+
 // Hang up
 mysqli_close($dbconnection);
 ?>
+
   </div>
 </body>
 </html>
+
+
+
