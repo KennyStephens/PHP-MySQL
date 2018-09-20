@@ -36,7 +36,7 @@ include_once('navbar.php');
   <body>
     <div class="container">
     
-      <h4 class="mt-3">Update Movie Database</h4>
+      <h1 class="mt-3 mb-3">Update Movie Database</h1>
 
       <form action="updateDatabase.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">

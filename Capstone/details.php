@@ -14,7 +14,6 @@
 include_once('navbar.php');
 ?>
 <div class="container">
-<h1>Movie Database Directory</h1>
 
 <?php
 require_once('variables.php');
@@ -40,8 +39,9 @@ while($row = mysqli_fetch_array($result)) {
   echo '<p class="mb-3">Rating: '.$row['rating'].'</p>';
   echo '<h4>Description:</h4>';
   echo '<p>'.$row['description'].'</p>';
-  echo '<a href="update.php?id='.$row['id'].'">  Update |</a>';
-  echo '<a href="comment.php?id='.$row['id'].'">  Comment </a>';
+  echo '<a href="update.php?id='.$row['id'].'">Update</a>';
+  echo '<span> | </span>';
+  echo '<a href="comment.php?id='.$row['id'].'">Comment</a>';
   echo '</div>';
   echo '</div>';
 }
@@ -53,13 +53,13 @@ while($row = mysqli_fetch_array($result)) {
 <?php
 require_once('variables.php');
 
-// $comment_id = $_GET['id'];
+$comment_id = $_GET['id'];
 
 // connection
 $dbconnection = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die ('Failed to connect to database');
 // build query
-$query2 = "SELECT * FROM capstone_comments";
-echo $comment_id;
+$query2 = "SELECT * FROM capstone_comments WHERE movieID = $comment_id";
+
 // send to database
 $result2 = mysqli_query($dbconnection, $query2) or die ('query failed');
 
@@ -68,6 +68,10 @@ while($row2 = mysqli_fetch_array($result2)) {
 
     echo '<div class="card mb-3 shadow">';
     echo '<div class="card-body">';
+    
+    echo '<h4>User:</h4>';
+    echo '<p class="mb-2">'.$row2['userName'].'</p>';
+
     echo '<h4>Rating:</h4>';
     echo '<p class="mb-2">'.$row2['rating'].'</p>';
 

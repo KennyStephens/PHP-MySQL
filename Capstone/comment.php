@@ -1,21 +1,31 @@
 <?php
 include_once('protect.php');
-	require_once('variables.php');
+    require_once('variables.php');
+    
+    $movieID = $_GET['id'];
+
 if (isset($_POST['submit'])){
 
 $rating = $_POST['rating'];
 $comment = $_POST['comment'];
+$movieID = $_POST['movieID'];
+$userName = $_POST['userName'];
+
 	
 	//build db connection
 	$dbconnection = mysqli_connect(HOST, USER , PASSWORD, DB_NAME) or die('connection lost');
 //build the select query
-$query = "INSERT INTO capstone_comments(rating, comment) VALUES ('$rating','$comment')";
+$query = "INSERT INTO capstone_comments(rating, comment, movieID, userName) VALUES ('$rating','$comment', '$movieID', '$userName' )";
 //now and try to talk to the database
 $result = mysqli_query($dbconnection, $query) or die('query failed');
 	
 //were done so hang up
 mysqli_close($dbconnection);
+
+header('Location: index.php');
 }
+
+
 	?>
 
 
@@ -54,7 +64,8 @@ mysqli_close($dbconnection);
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" ></textarea>
   </div>
 
-
+        <input type="hidden" name="movieID" value="<?php echo $movieID; ?>">
+        <input type="hidden" name="userName" value="<?php echo $_COOKIE['username']; ?>">
 
                
         <button type="submit" class="btn btn-primary mt-3" value="submit" name="submit">Submit</button>

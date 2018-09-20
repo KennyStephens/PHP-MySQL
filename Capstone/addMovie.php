@@ -17,7 +17,7 @@
   <body>
     <div class="container">
     
-      <h1 class="mt-3">Add Employees</h1>
+      <h1 class="mt-3 mb-3">Add Employees</h1>
 
       <form action="saveToDatabase.php" method="POST" enctype="multipart/form-data">
 

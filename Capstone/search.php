@@ -75,7 +75,7 @@ $id = $_GET['id'];
 
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
-      echo '<img class="m-2" src="movies/'.$row['photo'].'"></img>';
+      echo '<img class="m-2" style="margin-right:20px !important;" src="movies/'.$row['photo'].'"></img>';
       echo '<div style="display: inline-block;">';
       echo '<a href="details.php?id='.$row['id'].'"><h3>'.$row['title'].'</h3> </a>';
       
