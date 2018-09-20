@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <title>Thanks Page</title>
+
+
+  <title>Movie Details</title>
 </head>
 <?php
 include_once('navbar.php');
@@ -33,10 +35,9 @@ while($row = mysqli_fetch_array($result)) {
 
   echo '<div class="card mb-3 shadow">';
   echo '<div class="card-body">';
-  echo '<img class="m-2" src="movies/'.$row['photo'].'"></img>';
+  echo '<img style="float:left; margin-right:20px !important;" class="m-2" src="movies/'.$row['photo'].'"></img>';
   echo '<h2 class="mb-0">'.$row['title'].'</h2>';
   echo '<p class="mb-3">Rating: '.$row['rating'].'</p>';
-  echo '<br>';
   echo '<h4>Description:</h4>';
   echo '<p>'.$row['description'].'</p>';
   echo '<a href="update.php?id='.$row['id'].'">  Update |</a>';
