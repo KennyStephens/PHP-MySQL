@@ -4,16 +4,19 @@ include_once('protect.php');
     
     $movieID = $_GET['id'];
 
+    	//build db connection
+	$dbconnection = mysqli_connect(HOST, USER , PASSWORD, DB_NAME) or die('connection lost');
+
 if (isset($_POST['submit'])){
 
 $rating = $_POST['rating'];
-$comment = $_POST['comment'];
+$comment = mysqli_real_escape_string($dbconnection, trim($_POST['comment']));
+// $comment = $_POST['comment'];
 $movieID = $_POST['movieID'];
 $userName = $_POST['userName'];
 
 	
-	//build db connection
-	$dbconnection = mysqli_connect(HOST, USER , PASSWORD, DB_NAME) or die('connection lost');
+
 //build the select query
 $query = "INSERT INTO capstone_comments(rating, comment, movieID, userName) VALUES ('$rating','$comment', '$movieID', '$userName' )";
 //now and try to talk to the database
